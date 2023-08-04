@@ -21,19 +21,61 @@
     <div class="content-wrapper text-for-breadcrumb">
         <div class="content-header" style="display: flex; align-items: center;">
             <h4 style="margin-left: 10px; margin-right: auto;">
-
+                Сводка - Дом [[${flat.house.name}]], кв.[[${flat.number}]]
             </h4>
         </div>
         <section class="content">
-            <div class="card">
+            <div class="row">
+                <div class="col">
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>0</h3>
+                            <p>Лицевой счет</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-money-bill"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>0</h3>
+                            <p>Баланс по квартире</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-user"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>0</h3>
+                            <p>Средний расход за месяц</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-chart-pie"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 25px">
                 <div class="card-header">
-                    <a href="/admin/flat/index/1"
-                       class="btn btn-outline-secondary float-right">Очистить</a>
+                    Диаграмма расходов
                 </div>
                 <div class="card-body">
-
+                    Недостаточно данных для отображения статистики
                 </div>
-
+            </div>
+            <div class="card" style="margin-top: 25px">
+                <div class="card-header">
+                    Диаграмма расходов по месяцам за год
+                </div>
+                <div class="card-body">
+                    Недостаточно данных для отображения статистики
+                </div>
             </div>
         </section>
     </div>
