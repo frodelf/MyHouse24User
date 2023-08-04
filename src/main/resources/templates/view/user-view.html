@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/adminlte/dist/css/adminlte.min.css?v=3.2.0">
+    <link rel="stylesheet" href="/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/adminlte/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <style>
+        .rounded-image {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body class="sidebar-mini layout-fixed sidebar-closed -collapse" style="height: auto;">
+<div class="wrapper">
+    <div th:replace="blocks/menu :: menu"></div>
+    <div class="content-wrapper text-for-breadcrumb">
+        <div class="content-header" style="display: flex; align-items: center;">
+            <h4 style="margin-left: 10px; margin-right: auto;">
+                Профиль
+            </h4>
+            <ol class="breadcrumb" style="margin-right: 1%">
+                <li class="breadcrumb-item"><a th:href="@{/flat/{id}(id = ${user.flats.get(0).id})}"
+                                               class="text-for-breadcrumb">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Профиль
+                </li>
+            </ol>
+        </div>
+        <section class="content">
+            <div class="row">
+                <div class="col-4">
+                    <div class="content">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="circular-image">
+                                    <center>
+                                        <img class="rounded-image"
+                                             src="http://myhouse24.avada-media.ua/site/glide?path=%2Fupload%2Fplaceholder.jpg&w=522&h=350&fit=crop">
+                                        <h6>[[${user.firstName}]] [[${user.lastName}]] [[${user.fathersName}]]</h6>
+                                        Владелец квартиры
+                                    </center>
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td>Телефон</td>
+                                            <td class="float-right">[[${user.phone}]]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Viber</td>
+                                            <td class="float-right">[[${user.viber}]]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Telegram</td>
+                                            <td class="float-right">[[${user.telegram}]]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email</td>
+                                            <td class="float-right">[[${user.email}]]</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <center>
+                                    <a class="btn btn-primary" href="/user/update">Изменить</a>
+                                </center>
+                            </div>
+                        </div>
+                        <h4>Обо мне (заметки)</h4>
+                        <div class="card">
+                            <div class="card-body">
+                                [[${user.description}]]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <h4>Мои квартиры</h4>
+                    <div th:each="flat : ${user.flats}">
+                        <div class="card">
+                            <div class="card-header">
+                                Описание квартиры
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <img id="previewImage1" class="pull-left img-responsive"
+                                             src="http://myhouse24.avada-media.ua/site/glide?path=%2Fupload%2Fplaceholder.jpg&w=522&h=350&fit=crop"
+                                             style="width: 90%; height: 350px">
+                                    </div>
+                                    <div class="col-3">
+                                        <img id="previewImage2" class="pull-left img-responsive"
+                                             src="http://myhouse24.avada-media.ua/site/glide?path=%2Fupload%2Fplaceholder.jpg&w=522&h=350&fit=crop"
+                                             style="width: 90%; height: 160px; margin-bottom: 30px;">
+                                        <br/>
+                                        <img id="previewImage3" class="pull-left img-responsive"
+                                             src="http://myhouse24.avada-media.ua/site/glide?path=%2Fupload%2Fplaceholder.jpg&w=522&h=350&fit=crop"
+                                             style="width: 90%; height: 160px">
+                                    </div>
+                                    <div class="col-3">
+                                        <img id="previewImage4" class="pull-left img-responsive"
+                                             src="http://myhouse24.avada-media.ua/site/glide?path=%2Fupload%2Fplaceholder.jpg&w=522&h=350&fit=crop"
+                                             style="width: 90%; height: 160px; margin-bottom: 30px;">
+                                        <br/>
+                                        <img id="previewImage5" class="pull-left img-responsive"
+                                             src="http://myhouse24.avada-media.ua/site/glide?path=%2Fupload%2Fplaceholder.jpg&w=522&h=350&fit=crop"
+                                             style="width: 90%; height: 160px">
+                                    </div>
+                                </div>
+                                <h4>Описание</h4>
+                                <table class="table table-striped table-hover">
+                                    <tr>
+                                        <td style="width: 60%">Название дома</td>
+                                        <td style="width: 40%">[[${flat.house.name}]]</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 60%">Адрес</td>
+                                        <td style="width: 40%">[[${flat.house.address}]]</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 60%">№ квартиры</td>
+                                        <td style="width: 40%">[[${flat.number}]]</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 60%">Площадь</td>
+                                        <td style="width: 40%">[[${flat.area}]]</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 60%">Этаж</td>
+                                        <td style="width: 40%">[[${flat.floor.name}]]</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 60%">Секция</td>
+                                        <td style="width: 40%">[[${flat.section.name}]]</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 60%">Лицевой счет</td>
+                                        <td style="width: 40%">[[${flat.score.number}]]</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section class="content">
+
+                </section>
+            </div>
+        </section>
+    </div>
+    <footer class="main-footer">
+        Разработано <a href="https://avada-media.ua/">AVADA-MEDIA</a>. На базе системы управления <a
+            href="https://avada-media.ua/moydom24/">"МойДом24"</a>.
+        Документация API доступна <a href="/doc">по ссылке</a>.
+    </footer>
+</div>
+
+<script src="/adminlte/plugins/jquery/jquery.min.js"></script>
+<script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/adminlte/dist/js/adminlte.js?v=3.2.0"></script>
+<script src="/adminlte/dist/js/demo.js"></script>
+<script src="/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+</body>
+
+</html>
