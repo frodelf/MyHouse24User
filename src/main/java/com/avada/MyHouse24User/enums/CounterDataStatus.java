@@ -1,5 +1,7 @@
 package com.avada.MyHouse24User.enums;
 
+import lombok.Data;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,5 +16,9 @@ public enum CounterDataStatus {
     }
     public static List<String> getAll() {
         return Arrays.asList(New.name, Reviewed.name, ReviewedAndPaid.name, Zero.name);
+    }
+
+    public String getName() {
+        return name;
     }
 }

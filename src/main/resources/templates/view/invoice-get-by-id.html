@@ -46,19 +46,6 @@
                                 <th style="min-width: 250px">Статус</th>
                                 <th style="min-width: 250px">Сумма</th>
                             </tr>
-                            <tr>
-                                <th></th>
-                                <th><input class="form-control" type="date" style="width: 95%"></th>
-                                <th>
-                                    <select class="form-select" onchange="submitForm()">
-                                        <option>Вибрати...</option>
-                                        <option th:each="status : ${statuses}">
-                                            [[${status}]]
-                                        </option>
-                                    </select>
-                                </th>
-                                <th></th>
-                            </tr>
                             <tr th:each="invoice : ${flat.invoices}" class="clickable-row"
                                 th:data-action="@{/invoice/{id}(id=${invoice.getId()})}">
                                 <td>[[${invoice.number}]]</td>

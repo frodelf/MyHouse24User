@@ -27,7 +27,9 @@
 .status-new {
     background-color: green;
 }
-
+.status-blue {
+    background-color: blue;
+}
 .status-active {
     background-color: orange;
 }

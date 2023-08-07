@@ -14,4 +14,8 @@ public enum InvoiceStatus {
     public static List<String> getAll() {
         return Arrays.asList(Not_paid.name, Paid.name, Partially_paid.name);
     }
+
+    public String getName() {
+        return name;
+    }
 }

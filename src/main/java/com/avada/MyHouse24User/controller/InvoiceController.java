@@ -1,12 +1,14 @@
 package com.avada.MyHouse24User.controller;
 
 import com.avada.MyHouse24User.enums.InvoiceStatus;
+import com.avada.MyHouse24User.model.InvoiceDTO;
 import com.avada.MyHouse24User.services.impl.FlatServiceImpl;
 import com.avada.MyHouse24User.services.impl.InvoiceServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -19,6 +21,7 @@ public class InvoiceController {
 
     @GetMapping("/index")
     public String getAll(Model model) {
+        model.addAttribute("invoiceDTO", new InvoiceDTO());
         model.addAttribute("statuses", InvoiceStatus.getAll());
         return "view/invoice-get-all";
     }
@@ -34,5 +37,11 @@ public class InvoiceController {
     public String details(@PathVariable("id") long id, Model model) {
         model.addAttribute("invoice", invoiceService.getById(id));
         return "view/invoice-details";
+    }
+    @GetMapping("/filter")
+    public String filter(@ModelAttribute("invoiceDTO")InvoiceDTO invoiceDTO, Model model){
+        model.addAttribute("statuses", InvoiceStatus.getAll());
+        model.addAttribute("invoices", invoiceService.filter(invoiceDTO));
+        return "view/invoice-filter";
     }
 }

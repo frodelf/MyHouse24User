@@ -32,4 +32,8 @@ public enum Roles {
         }
         return null;
     }
+
+    public String getName() {
+        return name;
+    }
 }

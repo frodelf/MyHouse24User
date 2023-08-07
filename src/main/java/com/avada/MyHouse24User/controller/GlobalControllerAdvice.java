@@ -14,6 +14,6 @@ public class GlobalControllerAdvice {
     private final UserServiceImpl userService;
     @ModelAttribute("user")
     public User user(){
-        return userService.getById(1);
+        return userService.getAuthUser();
     }
 }

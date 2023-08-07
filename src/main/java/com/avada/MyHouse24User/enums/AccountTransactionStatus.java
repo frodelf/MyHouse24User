@@ -1,8 +1,9 @@
 package com.avada.MyHouse24User.enums;
 
+import lombok.Data;
+
 import java.util.Arrays;
 import java.util.List;
-
 public enum AccountTransactionStatus {
     COMPLETED("Проведена"),
     NOT_COMPLETED("Не проведена");
@@ -14,5 +15,9 @@ public enum AccountTransactionStatus {
     }
     public static List<String> getAll(){
         return Arrays.asList(COMPLETED.status, NOT_COMPLETED.status);
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

@@ -15,4 +15,7 @@ public class UserServiceImpl {
     public void save(User user){
         userRepository.save(user);
     }
+    public User getAuthUser(){
+        return userRepository.findById(1L).get();
+    }
 }
