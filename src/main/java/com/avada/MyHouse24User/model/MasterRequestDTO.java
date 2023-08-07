@@ -16,4 +16,5 @@ public class MasterRequestDTO {
     @DateTimeFormat(pattern = "HH:mm")
     private Date time;
     private String description;
+    private String status;
 }

@@ -25,7 +25,7 @@ public class MasterRequestController {
     private final MasterRequestMapper masterRequestMapper;
     @GetMapping("/index")
     public String getAll(Model model){
-        model.addAttribute("request", masterRequestService.getAll());
+        model.addAttribute("request", masterRequestMapper.toDtoList(masterRequestService.getAll()));
         return "view/master-get-all";
     }
     @GetMapping("/add")

@@ -50,12 +50,18 @@
                                 <th></th>
                             </tr>
                             <tr th:each="request : ${request}">
-                                <th>[[${request.number}]]</th>
-                                <th>[[${request.admin.firstName}]]</th>
-                                <th>[[${request.description}]]</th>
-                                <th>Удобное время</th>
-                                <th>[[${request.status}]]</th>
-                                <th></th>
+                                <td>[[${request.id}]]</td>
+                                <td>[[${request.role}]]</td>
+                                <td>[[${request.description}]]</td>
+                                <td>Удобное время</td>
+                                <td>
+                                    <span th:switch="${request.getStatus()}">
+                                        <span th:case="'Новое'" class="status status-blue">Новое</span>
+                                        <span th:case="'В работе'" class="status status-active">В работе</span>
+                                        <span th:case="'Выполнено'" class="status status-disabled">Выполнено</span>
+                                    </span>
+                                </td>
+                                <td></td>
                             </tr>
                         </table>
                     </div>

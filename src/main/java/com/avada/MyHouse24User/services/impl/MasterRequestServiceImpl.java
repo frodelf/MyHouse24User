@@ -14,7 +14,7 @@ public class MasterRequestServiceImpl {
     private final MasterRequestRepository masterRequestRepository;
     private final UserServiceImpl userService;
     public List<MasterRequest> getAll(){
-        return masterRequestRepository.findAllByUser(userService.getById(1));
+        return masterRequestRepository.findAllByUser(userService.getAuthUser());
     }
     public void save(MasterRequest masterRequest){
         masterRequestRepository.save(masterRequest);
