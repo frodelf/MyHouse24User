@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="uk" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -21,7 +21,7 @@
     <div class="content-wrapper text-for-breadcrumb">
         <div class="content-header" style="display: flex; align-items: center;">
             <h4 style="margin-left: 10px; margin-right: auto;">
-                Сводка - Дом [[${flat.house.name}]], кв.[[${flat.number}]]
+                <span th:text="#{Сводка_Дом}"></span> [[${flat.house.name}]], кв.[[${flat.number}]]
             </h4>
         </div>
         <section class="content">
@@ -30,7 +30,7 @@
                     <div class="small-box bg-success">
                         <div class="inner">
                             <h3>0</h3>
-                            <p>Лицевой счет</p>
+                            <p><span th:text="#{Лицевой_счет}"></span></p>
                         </div>
                         <div class="icon">
                             <i class="fa fa-money-bill"></i>
@@ -41,7 +41,7 @@
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h3>0</h3>
-                            <p>Баланс по квартире</p>
+                            <p><span th:text="#{Баланс_по_квартире}"></span></p>
                         </div>
                         <div class="icon">
                             <i class="fa fa-user"></i>
@@ -52,7 +52,7 @@
                     <div class="small-box bg-warning">
                         <div class="inner">
                             <h3>0</h3>
-                            <p>Средний расход за месяц</p>
+                            <p><span th:text="#{Средний_расход_за_месяц}"></span></p>
                         </div>
                         <div class="icon">
                             <i class="fa fa-chart-pie"></i>
@@ -63,18 +63,18 @@
 
             <div class="card" style="margin-top: 25px">
                 <div class="card-header">
-                    Диаграмма расходов
+                    <span th:text="#{Диаграмма_расходов}"></span>
                 </div>
                 <div class="card-body">
-                    Недостаточно данных для отображения статистики
+                    <span th:text="#{Недостаточно_данных_для_отображения_статистики}"></span>
                 </div>
             </div>
             <div class="card" style="margin-top: 25px">
                 <div class="card-header">
-                    Диаграмма расходов по месяцам за год
+                    <span th:text="#{Диаграмма_расходов_по_месяцам_за_год}"></span>
                 </div>
                 <div class="card-body">
-                    Недостаточно данных для отображения статистики
+                    <span th:text="#{Недостаточно_данных_для_отображения_статистики}"></span>
                 </div>
             </div>
         </section>

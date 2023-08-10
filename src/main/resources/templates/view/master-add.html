@@ -21,15 +21,16 @@
     <div class="content-wrapper text-for-breadcrumb">
         <div class="content-header" style="display: flex; align-items: center;">
             <h4 style="margin-left: 10px; margin-right: auto;">
-                Новая заявка
+                <span th:text="#{Новая_заява}"></span>
             </h4>
             <ol class="breadcrumb" style="margin-right: 1%">
                 <li class="breadcrumb-item"><a th:href="@{/flat/{id}(id = ${user.flats.get(0).id})}"
-                                               class="text-for-breadcrumb">Главная</a></li>
-                <li class="breadcrumb-item"><a href="/master-request/index" class="text-for-breadcrumb">Визов
-                    мастера</a></li>
+                                               class="text-for-breadcrumb"><span th:text="#{Главная}"></span></a></li>
+                <li class="breadcrumb-item"><a href="/master-request/index" class="text-for-breadcrumb">
+                    <span th:text="#{Визов_мастера}"></span>
+                </a></li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    Новая заява
+                    <span th:text="#{Новая_заява}"></span>
                 </li>
             </ol>
         </div>
@@ -37,24 +38,26 @@
             <form method="post" action="/master-request/add" th:object="${request}">
                 <div class="card">
                     <div class="card-body">
-                        Тип мастера
+                        <span th:text="#{Тип_мастера}"></span>
                         <select class="form-control" th:field="*{role}">
                             <option value="Любой специалист">
-                                Любой специалист
+                                <span th:text="#{Любой_специалист}"></span>
                             </option>
                             <option value="Сантехник">
-                                Сантехник
+
+                                <span th:text="#{Сантехник}"></span>
                             </option>
                             <option value="Сантехник">
-                                Электрик
+
+                                <span th:text="#{Электрик}"></span>
                             </option>
                             <option value="Сантехник">
-                                Слесарь
+                                <span th:text="#{Слесарь}"></span>
                             </option>
                         </select>
                         <div style="color: red; font-size: small; font-weight: bold; font-style: italic" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></div>
                         <br/>
-                        Квартира
+                        <span th:text="#{Квартира}"></span>
                         <select class="form-control" th:field="*{flat}">
                             <option value="">Виберите...</option>
                             <option th:each="flat : ${user.flats}" th:value="${flat.id}"
@@ -64,22 +67,26 @@
                         <br/>
                         <div class="row">
                             <div class="col">
+                                <span th:text="#{Дата_работ}"></span>
                                 <input class="form-control" type="date" th:field="*{date}">
                                 <div style="color: red; font-size: small; font-weight: bold; font-style: italic" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div>
                             </div>
                             <div class="col" >
+                                <span th:text="#{Время_работ}"></span>
                                 <input class="form-control" type="time" th:field="*{time}">
                                 <div style="color: red; font-size: small; font-weight: bold; font-style: italic" th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></div>
                             </div>
                         </div>
                         <br/>
-                        Описание
+                        <span th:text="#{Описание}"></span>
                         <br/>
                         <textarea class="form-control"  th:field="*{description}"></textarea>
                         <div style="color: red; font-size: small; font-weight: bold; font-style: italic" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success float-right">Отправить заяву</button>
+                        <button type="submit" class="btn btn-success float-right">
+                            <span th:text="#{Отправить_заяву}"></span>
+                        </button>
                     </div>
                 </div>
             </form>

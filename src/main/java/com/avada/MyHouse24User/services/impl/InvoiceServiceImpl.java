@@ -4,6 +4,7 @@ import com.avada.MyHouse24User.entity.Flat;
 import com.avada.MyHouse24User.entity.Invoice;
 import com.avada.MyHouse24User.model.InvoiceDTO;
 import com.avada.MyHouse24User.repo.InvoiceRepository;
+import com.avada.MyHouse24User.services.InvoiceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class InvoiceServiceImpl {
+public class InvoiceServiceImpl implements InvoiceService {
     public final InvoiceRepository invoiceRepository;
     public final UserServiceImpl userService;
     public Invoice getById(long id){

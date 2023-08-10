@@ -21,20 +21,24 @@
     <div class="content-wrapper text-for-breadcrumb">
         <div class="content-header" style="display: flex; align-items: center;">
             <h4 style="margin-left: 10px; margin-right: auto;">
-                Вызов мастера
+                <span th:text="#{Визов_мастера}"></span>
             </h4>
             <ol class="breadcrumb" style="margin-right: 1%">
                 <li class="breadcrumb-item"><a th:href="@{/flat/{id}(id = ${user.flats.get(0).id})}"
-                                               class="text-for-breadcrumb">Главная</a></li>
+                                               class="text-for-breadcrumb">
+                    <span th:text="#{Главная}"></span>
+                </a></li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    Вызов мастера
+                    <span th:text="#{Визов_мастера}"></span>
                 </li>
             </ol>
         </div>
         <section class="content">
             <div class="row" style="margin-bottom: 20px;">
                 <div class="col">
-                    <a href="/master-request/add" class="btn btn-success float-right">Создать заяву</a>
+                    <a href="/master-request/add" class="btn btn-success float-right">
+                        <span th:text="#{Создать_заяву}"></span>
+                    </a>
                 </div>
             </div>
             <div class="card">
@@ -42,11 +46,19 @@
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <tr>
-                                <th>№ заяви</th>
-                                <th>Тип мастера</th>
-                                <th>Описание</th>
-                                <th>Удобное время</th>
-                                <th>Статус</th>
+                                <th>№</th>
+                                <th>
+                                    <span th:text="#{Тип_мастера}"></span>
+                                </th>
+                                <th>
+                                    <span th:text="#{Описание}"></span>
+                                </th>
+                                <th>
+                                    <span th:text="#{Удобное_время}"></span>
+                                </th>
+                                <th>
+                                    <span th:text="#{Статус}"></span>
+                                </th>
                                 <th></th>
                             </tr>
                             <tr th:each="request : ${request}">

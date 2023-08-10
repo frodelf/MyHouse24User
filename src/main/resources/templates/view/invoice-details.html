@@ -21,15 +21,19 @@
     <div class="content-wrapper text-for-breadcrumb">
         <div class="content-header" style="display: flex; align-items: center;">
             <h4 style="margin-left: 10px; margin-right: auto;">
-                Просмотр квитанции: №[[${invoice.number}]]
+                <span th:text="#{Просмотр_квитанции}"></span>: №[[${invoice.number}]]
             </h4>
             <ol class="breadcrumb" style="margin-right: 1%">
                 <li class="breadcrumb-item"><a th:href="@{/flat/{id}(id = ${user.flats.get(0).id})}"
-                                               class="text-for-breadcrumb">Главная</a></li>
+                                               class="text-for-breadcrumb">
+                    <span th:text="#{Главная}"></span>
+                </a></li>
                 <li class="breadcrumb-item"><a href="invoice/index"
-                                               class="text-for-breadcrumb">Квитанции</a></li>
+                                               class="text-for-breadcrumb">
+                    <span th:text="#{Квитанции}"></span>
+                </a></li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    Квитанция на оплату
+                    <span th:text="#{Квитанция_на_оплату}"></span>
                 </li>
             </ol>
         </div>
@@ -38,7 +42,7 @@
                 <div class="card-header">
                     <a class="btn btn-primary float-right">
                         <i class="fa fa-print" aria-hidden="true"></i>
-                        Распечатать
+                        <span th:text="#{Распечатать}"></span>
                     </a>
                 </div>
                 <div class="card-body">
@@ -46,11 +50,11 @@
                         <table class="table table-striped">
                             <tr>
                                 <th>№</th>
-                                <th>Услуга</th>
-                                <th>Количество потребления (расход)</th>
-                                <th>Ед. изм.</th>
-                                <th>Цена за ед., грн</th>
-                                <th>Стоимость, грн</th>
+                                <th>[[#{Услуга}]]</th>
+                                <th>[[#{Количество_потребления_расход}]]</th>
+                                <th>[[#{Ед._изм.}]]</th>
+                                <th>[[#{Цена_за_ед.,_грн}]]</th>
+                                <th>[[#{Стоимость,_грн}]]</th>
                             </tr>
                             <tr th:each="service, index : ${invoice.invoiceAdditionalServices}">
                                 <td>[[${index.index}]]</td>
@@ -66,11 +70,11 @@
                 <div class="card-footer">
                     <a class="btn btn-success float-right">
                         <i class="fa fa-credit-card" aria-hidden="true"></i>
-                        Оплатить
+                        [[#{Оплатить}]]
                     </a>
                     <a class="btn btn-warning float-right" style="margin-right: 10px;">
                         <i class="fa fa-file-pdf" style="color: white" aria-hidden="true"></i>
-                        Скачать в pdf
+                        [[#{Скачать_в_pdf}]]
                     </a>
                 </div>
             </div>
