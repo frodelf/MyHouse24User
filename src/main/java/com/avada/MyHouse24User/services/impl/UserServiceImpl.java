@@ -31,13 +31,17 @@ public class UserServiceImpl implements UserService {
         log.info("IN verifyPassword password: {}", passwordEncoder.matches(password, user.getPassword()));
         return passwordEncoder.matches(password, user.getPassword());
     }
-
+    @Override
     public User getById(long id){
         return userRepository.findById(id).get();
     }
+    @Override
+
     public void save(User user){
         userRepository.save(user);
     }
+    @Override
+
     public User getAuthUser(){
         return userRepository.findById(1L).get();
     }
