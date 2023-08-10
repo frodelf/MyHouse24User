@@ -39,7 +39,7 @@ public class RegistrationService {
         VerificationToken savedToken = verificationTokenService.createToken(savedUser);
 
         String html_template =
-                "<a href='http://localhost:8080/login/confirm?token="
+                "<a href='http://localhost:8081/cabinet/login/confirm?token="
                         +savedToken.getToken()+
                         "'>Press to confirm registration!</a>";
 
