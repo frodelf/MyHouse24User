@@ -20,7 +20,7 @@ public class UserViewController {
     private final UserMapper userMapper;
     private final UserServiceImpl userService;
     @GetMapping("/view")
-    public String userView(){
+    public String userView(Model model){
         return "view/user-view";
     }
     @GetMapping("/update")
@@ -33,7 +33,7 @@ public class UserViewController {
         if(bindingResult.hasErrors()){
             return "view/user-update";
         }
-        userService.save(userMapper.toEntity(userDTO));
+        userService.save(userMapper.toEntity(userDTO), userDTO.getImage());
         return "redirect:/user/view";
     }
 }

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.NoSuchElementException;
 
@@ -15,6 +16,7 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final AmazonS3Service amazonS3Service;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -36,8 +38,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).get();
     }
     @Override
-
-    public void save(User user){
+    public void save(User user, MultipartFile image){
+        amazonS3Service.deleteFile(getByFirstName(user.getFirstName()).getImage());
+        user.setImage(amazonS3Service.uploadFile(image));
         userRepository.save(user);
     }
     @Override
@@ -55,5 +58,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getByFirstName(String name) {
-        return userRepository.findByFirstName(name).get();    }
+        return userRepository.findByFirstName(name).get();
+    }
 }

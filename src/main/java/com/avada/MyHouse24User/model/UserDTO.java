@@ -4,6 +4,7 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -45,9 +46,10 @@ public class UserDTO {
     @NotBlank(message = "Поле не може бути порожнім")
     @Size(max = 500, message = "Поле не може бути більше 50 символів")
     private String description;
+    private MultipartFile image;
     private String imageName;
 
-    public UserDTO(String id, String firstName, String lastName, String fathersName, LocalDate birthday, String phone, String viber, String telegram, String email, String status, String description, String imageName) {
+    public UserDTO(String id, String firstName, String lastName, String fathersName, LocalDate birthday, String phone, String viber, String telegram, String email, String status, String description, MultipartFile imageName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -59,6 +61,6 @@ public class UserDTO {
         this.email = email;
         this.status = status;
         this.description = description;
-        this.imageName = imageName;
+        this.image = imageName;
     }
 }

@@ -1,14 +1,19 @@
 package com.avada.MyHouse24User.mapper;
 
+import com.avada.MyHouse24User.config.AmazonS3Config;
 import com.avada.MyHouse24User.entity.User;
 import com.avada.MyHouse24User.enums.UserStatus;
 import com.avada.MyHouse24User.model.UserDTO;
+import com.avada.MyHouse24User.services.impl.AmazonS3Service;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 
 @Component
+@RequiredArgsConstructor
 public class UserMapper {
+    private final AmazonS3Service amazonS3Service;
     public User toEntity(UserDTO userDTO){
         User user = new User();
         user.setId(Long.valueOf(userDTO.getId()));
@@ -23,7 +28,6 @@ public class UserMapper {
         user.setPassword(userDTO.getPassword());
         user.setStatus(UserStatus.valueOf(userDTO.getStatus()));
         user.setDescription(userDTO.getDescription());
-        user.setImage(userDTO.getImageName());
         return user;
     }
     public UserDTO toDto(User user){

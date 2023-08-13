@@ -41,13 +41,13 @@ server:
 cloud:
   aws:
     credentials:
-      access-key: AKIARCYP4BMYWLOFSTNG
-      secret-key: 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
+      access-key: AKIAZ6GXNB7ZA2A7WE53
+      secret-key: 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
     region:
-      static: us-west-1
+      static: eu-north-1
     stack:
       auto: false
 
 application:
   bucket:
-    name: myhouse24
+    name: awss3bucketforavadatest
