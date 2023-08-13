@@ -110,9 +110,9 @@ class InvoiceControllerTest {
         user.setFlats(Arrays.asList(flat));
         when(flatService.getById(anyLong())).thenReturn(flat);
         when(userRepository.findById(anyLong())).thenReturn(Optional.of(user));
-        mockMvc.perform(MockMvcRequestBuilders.get("/invoice/index"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/invoice/filter"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("view/invoice-get-all"))
-                .andExpect(model().attributeExists("invoiceDTO", "statuses"));
+                .andExpect(view().name("view/invoice-filter"))
+                .andExpect(model().attributeExists("invoices", "statuses"));
     }
 }

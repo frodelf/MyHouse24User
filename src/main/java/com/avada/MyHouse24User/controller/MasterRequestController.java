@@ -5,6 +5,7 @@ import com.avada.MyHouse24User.model.MasterRequestDTO;
 import com.avada.MyHouse24User.services.impl.MasterRequestServiceImpl;
 import com.avada.MyHouse24User.util.DateTimeUtil;
 import com.avada.MyHouse24User.validator.MasterRequestValidator;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,8 +33,9 @@ public class MasterRequestController {
     public String add(@ModelAttribute("request")MasterRequestDTO masterRequestDTO){
         return "view/master-add";
     }
+
     @PostMapping("/add")
-    public String addPost(@ModelAttribute("request")MasterRequestDTO masterRequestDTO, BindingResult bindingResult){
+    public String addPost(@ModelAttribute("request") @Valid MasterRequestDTO masterRequestDTO, BindingResult bindingResult){
         masterRequestValidator.validate(masterRequestDTO, bindingResult);
         if(bindingResult.hasErrors()){
             return "view/master-add";

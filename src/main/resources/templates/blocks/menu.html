@@ -1,22 +1,36 @@
 <div th:fragment="menu">
     <!--  navbar  -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <ul class="navbar-nav">
+    <nav class="main-header navbar navbar-expand navbar-light">
+        <ul class="navbar-nav" style="width: 100%">
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item ml-auto">
+                <div class="row">
+                    <div class="col">
+                        <button id="themeSwitchButton" class="btn" style="outline: none"><p style="margin-bottom: 0px" id="cookieDisplay"></p>
+                        </button>
+                    </div>
+                    <div class="col">
+                        <select id="languageSelect" style="width: 50px" class="form-control" onchange="changeLanguage()">
+                            <option value="ru" th:selected="${#locale.language == 'ru'}">ru</option>
+                            <option value="uk" th:selected="${#locale.language == 'uk'}">uk</option>
+                        </select>
+                    </div>
+                    <div class="col"></div>
+                </div>
             </li>
         </ul>
     </nav>
 
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        <a href="/admin/" class="brand-link" style="height: 56.67px;padding: 3px;">
+    <aside class="main-sidebar sidebar-light-primary elevation-4">
+        <a href="/admin/" id="aside-for-theme" class="brand-link" style="height: 56.67px; padding: 3px;">
             <img src="/images/logo.png" alt="AdminLTE Logo" class="logo-image"
                  style="opacity: .8; width:75%; margin:auto;">
             <img src="/images/logo-mini.png" alt="AdminLTE Logo Mini" class="mini-logo-image"
                  style="opacity: .8; width:50px; height: 48px; margin:auto;">
         </a>
-        <div class="sidebar os-host os-theme-light os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-transition"
-             style="background-color: white; color: #000;">
+        <div class="sidebar os-host os-theme-black os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-transition">
             <div class="os-padding">
                 <div class="os-viewport os-viewport-native-scrollbars-invisible" style="overflow-y: scroll;">
                     <div class="os-content" style="padding: 0px 8px; height: 100%; width: 100%;">
@@ -24,19 +38,18 @@
                             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                                 data-accordion="false">
                                 <li class="nav-item">
-                                    <a class="nav-link2 nav-link" style="color: #3e393e;">
+                                    <a class="nav-link2 nav-link">
                                         <i class="fa fa-chart-line"></i>
                                         <p>
-                                            Сводка
-                                            <i class="right fas fa-angle-left"></i>
+                                            <span th:text="#{Сводка}"></span>
                                         </p>
+                                        <i class="right fas fa-angle-left"></i>
                                     </a>
-                                    <ul class="nav nav-treeview" style="color: #3e393e;">
+                                    <ul class="nav nav-treeview">
 
                                         <div th:each="flat : ${user.flats}">
                                             <li class="nav-item">
-                                                <a th:href="@{/flat/{id}(id=${flat.id})}" class="nav-link"
-                                                   style="color: #3e393e;">
+                                                <a th:href="@{/flat/{id}(id=${flat.id})}" class="nav-link">
                                                     <i class="fa fa-building nav-icon"></i>
                                                     <p style="font-size: 12px">Дом [[${flat.house.name}]],
                                                         кв.[[${flat.number}]]</p>
@@ -47,24 +60,28 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" style="width:100%; color: #3e393e;" class="nav-link2 nav-link">
+                                    <a href="#" style="width:100%;" class="nav-link2 nav-link">
                                         <i class="fa fa-file" aria-hidden="true"></i>
-                                        <p class="pl-1">Квитанции</p>
+                                        <p class="pl-1">
+                                            <span th:text="#{Квитанции}"></span>
+                                        </p>
                                         <i class="right fas fa-angle-left"></i>
                                     </a>
                                     <ul class="nav nav-treeview" style="font-weight: 400">
                                         <li class="nav-item dropdown-items">
                                             <a href="/invoice/index" class="nav-link dropdown-links"
-                                               style="margin:0; width:100%; color: #3e393e;">
+                                               style="margin:0; width:100%;">
                                                 <i style="font-size: 12px;" class="fa fa-file nav-icon"
                                                    aria-hidden="true"></i>
-                                                <p>Все квитанции</p>
+                                                <p>
+                                                    <span th:text="#{Все_квитанции}"></span>
+                                                </p>
                                             </a>
                                         </li>
                                         <div th:each="flat : ${user.flats}">
                                             <li class="nav-item dropdown-items">
                                                 <a th:href="@{/invoice/index/{id}(id=${flat.id})}" class="nav-link dropdown-links"
-                                                   style="margin:0; width:100%; color: #3e393e;">
+                                                   style="margin:0; width:100%;">
                                                     <i style="font-size: 12px;" class="fa fa-file-alt nav-icon"
                                                        aria-hidden="true"></i>
                                                     <p style="font-size: 12px">Дом [[${flat.house.name}]],
@@ -75,16 +92,18 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" style="width:100%; color: #3e393e;" class="nav-link2 nav-link">
+                                    <a href="#" style="width:100%;" class="nav-link2 nav-link">
                                         <i class="fa fa-money-bill" aria-hidden="true"></i>
-                                        <p class="pl-1">Тарифи</p>
+                                        <p class="pl-1">
+                                            <span th:text="#{Тарифи}"></span>
+                                        </p>
                                         <i class="right fas fa-angle-left"></i>
                                     </a>
                                     <ul class="nav nav-treeview" style="font-weight: 400">
                                         <div th:each="flat : ${user.flats}">
                                             <li class="nav-item dropdown-items">
                                                 <a th:href="@{/tariff/{id}(id=${flat.id})}" class="nav-link dropdown-links"
-                                                   style="margin:0; width:100%; color: #3e393e;">
+                                                   style="margin:0; width:100%; ">
                                                     <i style="font-size: 12px;" class="fa fa-file-alt nav-icon"
                                                        aria-hidden="true"></i>
                                                     <p style="font-size: 12px">Дом [[${flat.house.name}]],
@@ -95,24 +114,31 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/message/index" style="width:100%; color: #3e393e;"
+                                    <a href="/message/index" style="width:100%;"
                                        class="nav-link">
                                         <i class="fa fa-envelope" aria-hidden="true"></i>
-                                        <p class="pl-1">Сообщения</p>
+                                        <p class="pl-1">
+                                            <span th:text="#{Сообщения}"></span>
+
+                                        </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/master-request/index" style="width:100%; color: #3e393e;"
+                                    <a href="/master-request/index" style="width:100%;"
                                        class="nav-link">
                                         <i class="fa fa-wrench" aria-hidden="true"></i>
-                                        <p class="pl-1">Заявки вызова мастера</p>
+                                        <p class="pl-1">
+                                            <span style="font-size: 15px" th:text="#{Заявки_вызова_мастера}"></span>
+                                        </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/user/view" style="width:100%; color: #3e393e;"
+                                    <a href="/user/view" style="width:100%"
                                        class="nav-link">
                                         <i class="fa fa-user" aria-hidden="true"></i>
-                                        <p class="pl-1">Профиль</p>
+                                        <p class="pl-1">
+                                            <span th:text="#{Профиль}"></span>
+                                        </p>
                                     </a>
                                 </li>
                             </ul>
@@ -123,4 +149,84 @@
         </div>
     </aside>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const themeToggle = $("#themeToggle");
+            const body = $("body");
+            const nav = $("nav");
+            const aside = $("aside");
+            const asideForTheme = $("#aside-for-theme");
+            console.log(document.cookie)
+            let darkModeEnabled = false;
+            toggleTheme()
+            function toggleTheme() {
+                darkModeEnabled = !darkModeEnabled;
+                const theme = getCookie("theme");
+                const tableRows = document.querySelectorAll("table tr");
+                if (theme === "☁") {
+                    body.addClass("dark-mode");
+                    nav.removeClass("navbar-light").addClass("navbar-dark");
+                    aside.removeClass("sidebar-light-primary").addClass("sidebar-dark-primary");
+                    asideForTheme.css("background-color", "#343a40");
+                    tableRows.forEach(row => {
+                        row.classList.add("table-dark");
+                    });
+                    $(".text-for-breadcrumb").css("color", "#fff");
+                } else {
+                    body.removeClass("dark-mode");
+                    nav.removeClass("navbar-dark").addClass("navbar-light");
+                    aside.removeClass("sidebar-dark-primary").addClass("sidebar-light-primary");
+                    asideForTheme.css("background-color", "");
+                    tableRows.forEach(row => {
+                        row.classList.remove("table-dark");
+                    });
+                    $(".text-for-breadcrumb").css("color", "#212529BF");
+                }
+            }
+
+            function setCookie(name, value) {
+                const date = new Date();
+                date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000)); // Тут 365 вказує на кількість днів
+                const expires = '; expires=' + date.toUTCString();
+                document.cookie = name + '=' + (value || '') + expires + '; path=/';
+            }
+
+            const cookieDisplayElement = document.getElementById('cookieDisplay');
+            cookieDisplayElement.textContent = getCookie("theme")
+
+            function getCookie(name) {
+                const nameEQ = name + '=';
+                const ca = document.cookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            }
+            themeToggle.click(toggleTheme);
+
+            const themeSwitchButton = document.getElementById("themeSwitchButton");
+
+            themeSwitchButton.addEventListener("click", function() {
+                console.log(document.cookie)
+                console.log(document.cookie.theme)
+                if (getCookie("theme") === "☁") {
+                    setCookie("theme", "☀")
+                    setCookie("language","ru")
+                    themeSwitchButton.textContent = "☀";
+                    toggleTheme()
+                } else {
+                    setCookie("theme", "☁")
+                    setCookie("language","uk")
+                    themeSwitchButton.textContent = "☁";
+                    toggleTheme()
+                }
+            });
+        });
+        function changeLanguage() {
+            var selectedLanguage = document.getElementById("languageSelect").value;
+            window.location.search = "?lang=" + selectedLanguage;
+        }
+    </script>
 </div>

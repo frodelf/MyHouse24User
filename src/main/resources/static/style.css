@@ -52,3 +52,13 @@
     padding-right: 8px;
     padding-left: 8px;
 }
+
+.dark-mode {
+}
+
+.dark-mode #aside-for-theme {
+    background-color: #343a40;
+}
+.dark-mode #table-for-theme {
+    background-color: #343a40;
+}

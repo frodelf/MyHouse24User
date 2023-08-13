@@ -1,6 +1,7 @@
 package com.avada.MyHouse24User.model;
 
 import com.avada.MyHouse24User.entity.Flat;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -15,6 +16,7 @@ public class MasterRequestDTO {
     private Date date;
     @DateTimeFormat(pattern = "HH:mm")
     private Date time;
+    @NotBlank()
     private String description;
     private String status;
 }

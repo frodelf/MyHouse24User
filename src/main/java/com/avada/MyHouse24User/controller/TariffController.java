@@ -18,4 +18,5 @@ public class TariffController {
         model.addAttribute("flat", flatService.getById(id));
         return "view/tariff-get-by-id";
     }
+
 }

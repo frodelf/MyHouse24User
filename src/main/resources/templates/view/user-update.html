@@ -43,7 +43,7 @@
                                             </div>
                                             <div th:if="${userDTO.getImageName()} != null">
                                                 <img class="img-circle pull-left img-responsive" id="previewImage1"
-                                                     th:src="@{https://myhouse24.s3.us-west-1.amazonaws.com/{name}(name = ${user.image})}"
+                                                     th:src="@{https://awss3bucketforavadatest.s3.eu-north-1.amazonaws.com/{name}(name = ${user.image})}"
                                                      style="width: 160px; height: 160px">
                                             </div>
                                         </div>

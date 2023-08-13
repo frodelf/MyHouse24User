@@ -91,6 +91,9 @@ $(document).ready(function () {
     showPage(currentPage);
     updatePagination();
 });
+
+
+
 $(document).ready(function () {
     $('.mySelect').select2();
 });
