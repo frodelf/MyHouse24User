@@ -1,5 +1,7 @@
 package com.avada.MyHouse24User.controller;
 
+import com.avada.MyHouse24User.entity.Theme;
+import com.avada.MyHouse24User.entity.User;
 import com.avada.MyHouse24User.mapper.UserMapper;
 import com.avada.MyHouse24User.model.UserDTO;
 import com.avada.MyHouse24User.services.impl.UserServiceImpl;
@@ -8,10 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -35,5 +34,16 @@ public class UserViewController {
         }
         userService.save(userMapper.toEntity(userDTO), userDTO.getImage());
         return "redirect:/user/view";
+    }
+    @GetMapping("/change/theme/{theme}")
+    @ResponseBody
+    public void changeTheme(@PathVariable("theme")String theme){
+        User user = userService.getAuthUser();
+        if(theme.equals("light")){
+            user.setTheme(Theme.LIGHT);
+        } else if (theme.equals("dark")) {
+            user.setTheme(Theme.DARK);
+        }
+        userService.save(user);
     }
 }

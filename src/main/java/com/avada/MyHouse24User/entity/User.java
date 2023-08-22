@@ -44,6 +44,7 @@ public class User implements UserDetails {
     private UserStatus status;
     private String description;
     private String image;
+    private Theme theme;
     private boolean enabled = false;
     @OneToMany(mappedBy = "user")
     List<Flat> flats;

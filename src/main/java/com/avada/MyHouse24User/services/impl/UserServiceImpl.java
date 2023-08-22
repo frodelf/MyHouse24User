@@ -39,8 +39,10 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public void save(User user, MultipartFile image){
-        amazonS3Service.deleteFile(getByFirstName(user.getFirstName()).getImage());
-        user.setImage(amazonS3Service.uploadFile(image));
+        if(!image.isEmpty()){
+            amazonS3Service.deleteFile(getByFirstName(user.getFirstName()).getImage());
+            user.setImage(amazonS3Service.uploadFile(image));
+        }
         userRepository.save(user);
     }
     @Override
@@ -59,5 +61,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getByFirstName(String name) {
         return userRepository.findByFirstName(name).get();
+    }
+    public void save(User user){
+        userRepository.save(user);
     }
 }

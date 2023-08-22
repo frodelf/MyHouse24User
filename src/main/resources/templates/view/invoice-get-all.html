@@ -31,7 +31,7 @@
     </script>
 </head>
 
-<body class="sidebar-mini layout-fixed sidebar-closed -collapse" style="height: auto;">
+<body class="sidebar-mini layout-fixed sidebar-closed -collapse" th:classappend="${theme == 'LIGHT' ? '' : 'dark-mode'}" style="height: auto;">
 <div class="wrapper">
     <div th:replace="blocks/menu :: menu"></div>
     <div class="content-wrapper text-for-breadcrumb">
@@ -60,7 +60,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <form id="formSend" method="get" action="/invoice/filter" onsubmit="event.preventDefault()">
-                            <table id="table-for-theme" class="table table-striped table-hover ">
+                            <table id="table-for-theme" class="table table-striped table-hover " th:classappend="${theme == 'LIGHT' ? '' : 'table-dark'}">
                                 <tr>
                                     <th style="min-width: 150px">№</th>
                                     <th style="min-width: 250px"><span th:text="#{Дата}"></span></th>
