@@ -3,6 +3,7 @@ package com.avada.MyHouse24User.services.impl;
 import com.avada.MyHouse24User.entity.User;
 import com.avada.MyHouse24User.repo.UserRepository;
 import com.avada.MyHouse24User.services.UserService;
+import com.avada.MyHouse24User.util.ImageUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -38,9 +39,12 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public void save(User user, MultipartFile image){
-        if(!image.isEmpty()){
-//            amazonS3Service.deleteFile(getByFirstName(user.getFirstName()).getImage());
-//            user.setImage(amazonS3Service.uploadFile(image));
+        user.setImage(getById(user.getId()).getImage());
+        String imageName = "";
+        if(user.getImage()!=null)imageName= user.getImage();
+        if(!image.isEmpty()) {
+            user.setImage(ImageUtil.imageForUser(image));
+            if(!imageName.isBlank())ImageUtil.deleteFile(imageName);
         }
         userRepository.save(user);
     }

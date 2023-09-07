@@ -17,7 +17,7 @@ import java.util.Random;
 public class ImageUtil {
     private static final String pathToFolder = "E:/MyHouse24";
     private static String contextPath = "/myHouse24DA";
-    public static String imageForUser(User user, MultipartFile image) {
+    public static String imageForUser(MultipartFile image) {
         String nameImage ="";
         try {
             Path uploadPath = Paths.get(pathToFolder+"/avatar");
