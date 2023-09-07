@@ -16,7 +16,6 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    private final AmazonS3Service amazonS3Service;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -40,8 +39,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(User user, MultipartFile image){
         if(!image.isEmpty()){
-            amazonS3Service.deleteFile(getByFirstName(user.getFirstName()).getImage());
-            user.setImage(amazonS3Service.uploadFile(image));
+//            amazonS3Service.deleteFile(getByFirstName(user.getFirstName()).getImage());
+//            user.setImage(amazonS3Service.uploadFile(image));
         }
         userRepository.save(user);
     }

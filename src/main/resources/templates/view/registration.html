@@ -7,17 +7,17 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
-    <link rel="stylesheet" th:href="@{/dist/css/login.css}">
+    <link rel="stylesheet" th:href="@{{context_path}/plugins/fontawesome-free/css/all.min.css(context_path = ${context_path})}">
+    <link rel="stylesheet" th:href="@{{context_path}/dist/css/login.css(context_path = ${context_path})}">
     <title>Hello, world!</title>
 </head>
 <body>
 
 <div class="login-container">
     <div class="login-box">
-        <a href="/myHouse/"><img src="/images/logo.png" class="img-fluid" alt=""></a>
+        <a th:href="@{{context_path}/myHouse/(context_path = ${context_path})}"><img th:src="@{{context_path}/images/logo.png(context_path = ${context_path})}" class="img-fluid" alt=""></a>
         <br>
-        <form action="/cabinet/registration" method="post">
+        <form th:action="@{{context_path}/cabinet/registration(context_path = ${context_path})}" method="post">
             <div class="credentials">
                 <div class="row tabs">
                     <div class="col-md-6 text-center active-tab">

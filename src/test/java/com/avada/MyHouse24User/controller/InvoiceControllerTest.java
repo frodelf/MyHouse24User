@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.ui.Model;
@@ -45,6 +46,7 @@ class InvoiceControllerTest {
     @Mock
     private Model model;
     @Test
+    @WithMockUser(username = "admin@gmail.com")
     void getAll() throws Exception {
         User user = new User();
         House house = new House();
@@ -63,6 +65,7 @@ class InvoiceControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin@gmail.com")
     void getById() throws Exception {
         User user = new User();
         House house = new House();
@@ -80,6 +83,7 @@ class InvoiceControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin@gmail.com")
     void details() throws Exception {
         User user = new User();
         Flat flat = new Flat();
@@ -100,6 +104,7 @@ class InvoiceControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin@gmail.com")
     void filter() throws Exception {
         User user = new User();
         House house = new House();

@@ -1,5 +1,4 @@
 <div th:fragment="menu">
-    <!--  navbar  -->
     <nav class="main-header navbar navbar-expand" th:classappend="${theme == 'LIGHT' ? 'navbar-light' : 'navbar-dark'}">
         <ul class="navbar-nav" style="width: 100%">
             <li class="nav-item">
@@ -24,10 +23,10 @@
     </nav>
 
     <aside class="main-sidebar elevation-4" th:classappend="${theme == 'LIGHT' ? 'sidebar-light-primary' : 'sidebar-dark-primary'}">
-        <a href="/user/view" id="aside-for-theme" class="brand-link" style="height: 56.67px; padding: 3px;">
-            <img src="/images/logo.png" alt="AdminLTE Logo" class="logo-image"
+        <a th:href="@{{context_path}/user/view(context_path = ${context_path})}" id="aside-for-theme" class="brand-link" style="height: 56.67px; padding: 3px;">
+            <img th:src="@{{context_path}/images/logo.png(context_path = ${context_path})}" alt="AdminLTE Logo" class="logo-image"
                  style="opacity: .8; width:75%; margin:auto;">
-            <img src="/images/logo-mini.png" alt="AdminLTE Logo Mini" class="mini-logo-image"
+            <img th:src="@{{context_path}/images/logo-mini.png(context_path = ${context_path})}" alt="AdminLTE Logo Mini" class="mini-logo-image"
                  style="opacity: .8; width:50px; height: 48px; margin:auto;">
         </a>
         <div class="sidebar os-host os-theme-black os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-transition">
@@ -49,7 +48,7 @@
 
                                         <div th:each="flat : ${user.flats}">
                                             <li class="nav-item">
-                                                <a th:href="@{/flat/{id}(id=${flat.id})}" class="nav-link">
+                                                <a th:href="@{{context_path}/flat/{id}(id=${flat.id}, context_path=${context_path})}" class="nav-link">
                                                     <i class="fa fa-building nav-icon"></i>
                                                     <p style="font-size: 12px">Дом [[${flat.house.name}]],
                                                         кв.[[${flat.number}]]</p>
@@ -69,7 +68,7 @@
                                     </a>
                                     <ul class="nav nav-treeview" style="font-weight: 400">
                                         <li class="nav-item dropdown-items">
-                                            <a href="/invoice/index" class="nav-link dropdown-links"
+                                            <a th:href="@{{context_path}/invoice/index(context_path = ${context_path})}" class="nav-link dropdown-links"
                                                style="margin:0; width:100%;">
                                                 <i style="font-size: 12px;" class="fa fa-file nav-icon"
                                                    aria-hidden="true"></i>
@@ -80,7 +79,7 @@
                                         </li>
                                         <div th:each="flat : ${user.flats}">
                                             <li class="nav-item dropdown-items">
-                                                <a th:href="@{/invoice/index/{id}(id=${flat.id})}" class="nav-link dropdown-links"
+                                                <a th:href="@{{context_path}/invoice/index/{id}(id=${flat.id}, context_path = ${context_path})}" class="nav-link dropdown-links"
                                                    style="margin:0; width:100%;">
                                                     <i style="font-size: 12px;" class="fa fa-file-alt nav-icon"
                                                        aria-hidden="true"></i>
@@ -114,7 +113,7 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/message/index" style="width:100%;"
+                                    <a th:href="@{{context_path}/message/index(context_path = ${context_path})}" style="width:100%;"
                                        class="nav-link">
                                         <i class="fa fa-envelope" aria-hidden="true"></i>
                                         <p class="pl-1">
@@ -124,7 +123,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/master-request/index" style="width:100%;"
+                                    <a th:href="@{{context_path}/master-request/index(context_path = ${context_path})}" style="width:100%;"
                                        class="nav-link">
                                         <i class="fa fa-wrench" aria-hidden="true"></i>
                                         <p class="pl-1">
@@ -133,7 +132,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/user/view" style="width:100%"
+                                    <a th:href="@{{context_path}/user/view(context_path = ${context_path})}" style="width:100%"
                                        class="nav-link">
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                         <p class="pl-1">
@@ -215,13 +214,14 @@
 
             const themeSwitchButton = document.getElementById("themeSwitchButton");
             themeSwitchButton.type='button';
+            var contextPath = '[[${context_path}]]'
 
             themeSwitchButton.addEventListener("click", function() {
                 if (getCookie("theme") === "☁") {
                     setCookie("theme", "☀")
                     themeSwitchButton.textContent = "☀";
                     $.ajax({
-                        url: '/user/change/theme/light',
+                        url: contextPath+'/user/change/theme/light',
                         method: 'GET',
                         success: function(response) {
                         },
@@ -231,7 +231,7 @@
                     setCookie("theme", "☁")
                     themeSwitchButton.textContent = "☁";
                     $.ajax({
-                        url: '/user/change/theme/dark',
+                        url: contextPath+'/user/change/theme/dark',
                         method: 'GET',
                         success: function(response) {
                         },

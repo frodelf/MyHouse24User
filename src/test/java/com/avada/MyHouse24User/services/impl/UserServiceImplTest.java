@@ -37,7 +37,7 @@ class UserServiceImplTest {
     void save() {
         User userToSave = new User();
         userToSave.setId(1L);
-        userService.save(userToSave, new MockMultipartFile("", new byte[]{}));
+        userService.save(userToSave, new MockMultipartFile("qwerty", new byte[]{}));
         verify(userRepository, times(1)).save(userToSave);
     }
 

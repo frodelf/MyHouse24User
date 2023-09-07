@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -39,12 +40,16 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf(AbstractHttpConfigurer::disable)
-//                .csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
+//                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/login/**", "/cabinet/login", "/cabinet/login/**", "/cabinet/registration", "/oauth/**").permitAll();
                     auth.requestMatchers("/favicon.ico").permitAll();
-                    auth.requestMatchers("/secured").authenticated();
+//                    auth.requestMatchers("/user/**").authenticated();
+//                    auth.requestMatchers("/flat/**").authenticated();
+//                    auth.requestMatchers("/invoice/**").authenticated();
+//                    auth.requestMatchers("/tariff/**").authenticated();
+//                    auth.requestMatchers("/master-request/**").authenticated();
                     auth.anyRequest().permitAll();
                 })
                 .oauth2Login(
