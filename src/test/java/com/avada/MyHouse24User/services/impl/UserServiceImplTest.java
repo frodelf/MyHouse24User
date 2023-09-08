@@ -7,7 +7,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
@@ -37,7 +36,9 @@ class UserServiceImplTest {
     void save() {
         User userToSave = new User();
         userToSave.setId(1L);
-        userService.save(userToSave, new MockMultipartFile("qwerty", new byte[]{}));
+        userToSave.setImage("image");
+        when(userRepository.findById(anyLong())).thenReturn(Optional.of(userToSave));
+        userService.save(userToSave, new MockMultipartFile("qwerty", new byte[1]));
         verify(userRepository, times(1)).save(userToSave);
     }
 
@@ -87,7 +88,6 @@ class UserServiceImplTest {
         User result = userService.register(user);
 
         assertSame(savedUser, result);
-//        assertEquals("encodedPassword", result.getPassword());
         verify(userRepository, times(1)).save(user);
     }
     @Test
@@ -103,5 +103,12 @@ class UserServiceImplTest {
         assertNotNull(result);
         assertEquals(firstName, result.getFirstName());
         verify(userRepository, times(1)).findByFirstName(firstName);
+    }
+    @Test
+    void testSave() {
+        User testUser = new User();
+        testUser.setId(1L);
+        userService.save(testUser);
+        verify(userRepository, times(1)).save(testUser);
     }
 }

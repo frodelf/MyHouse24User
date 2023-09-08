@@ -11,4 +11,5 @@ public interface UserService {
     boolean verifyPassword(User user, String password);
     User getByFirstName(String name);
     User register(User user);
+    void save(User user);
 }
