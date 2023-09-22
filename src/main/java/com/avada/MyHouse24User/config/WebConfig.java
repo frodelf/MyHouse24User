@@ -25,7 +25,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/static/files/");
         registry
                 .addResourceHandler("/uploads/**")
-                .addResourceLocations("file:E:/MyHouse24/");
+                .addResourceLocations("file:/var/photos/");
     }
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

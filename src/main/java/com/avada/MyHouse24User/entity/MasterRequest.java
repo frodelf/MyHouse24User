@@ -28,6 +28,5 @@ public class MasterRequest {
     private User user;
     @ManyToOne
     private Flat flat;
-    @ManyToOne
-    private Role role;
+    private String role;
 }

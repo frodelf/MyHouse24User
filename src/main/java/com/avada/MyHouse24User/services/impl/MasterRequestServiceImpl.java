@@ -1,12 +1,10 @@
 package com.avada.MyHouse24User.services.impl;
 
-import com.avada.MyHouse24User.entity.Flat;
 import com.avada.MyHouse24User.entity.MasterRequest;
 import com.avada.MyHouse24User.repo.MasterRequestRepository;
 import com.avada.MyHouse24User.services.MasterRequestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

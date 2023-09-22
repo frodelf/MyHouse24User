@@ -15,12 +15,15 @@ import java.util.Random;
 @Log4j2
 @RequiredArgsConstructor
 public class ImageUtil {
-    private static final String pathToFolder = "E:/MyHouse24";
+    private static final String pathToFolder = "/var/photos";
     private static String contextPath = "/myHouse24DA";
     public static String imageForUser(MultipartFile image) {
         String nameImage ="";
         try {
             Path uploadPath = Paths.get(pathToFolder+"/avatar");
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
             String originalFilename = image.getOriginalFilename();
             String format = originalFilename.substring(originalFilename.lastIndexOf("."));
             nameImage = generateName() + format;
