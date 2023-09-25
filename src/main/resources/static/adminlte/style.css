@@ -1,0 +1,64 @@
+.sidebar-dark-primary .nav-sidebar .nav-link {
+    color: #fff;
+}
+
+.sidebar-dark-primary .nav-sidebar .nav-treeview>.nav-item>.nav-link {
+    color: #fff;
+}
+
+.sidebar-dark-primary .brand-link {
+    background-color: #fff;
+    color: #000;
+}
+.select2-selection{
+    min-height: 38px;
+}
+.text-for-breadcrumb{
+    font-size: 15px;
+    text-decoration: none;
+    color: #212529BF;
+}
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+}
+.status-new {
+    background-color: green;
+}
+.status-blue {
+    background-color: blue;
+}
+.status-active {
+    background-color: orange;
+}
+
+.status-disabled {
+    background-color: red;
+}
+
+.content-header{
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.wrapper{
+    width: 99.5%;
+}
+
+.content{
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+.dark-mode {
+}
+
+.dark-mode #aside-for-theme {
+    background-color: #343a40;
+}
+.dark-mode #table-for-theme {
+    background-color: #343a40;
+}
