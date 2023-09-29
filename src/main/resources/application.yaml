@@ -11,9 +11,9 @@ spring:
     url: jdbc:mysql://db:3306/myhouse24
     username: root
     password: root
-    jpa:
-      hibernate:
-        ddl-auto: update
+  jpa:
+    hibernate:
+      ddl-auto: update
     show-sql: true
   security:
     oauth2:
@@ -37,6 +37,5 @@ spring:
           ssl:
             trust: smtp.gmail.com
 server:
-  port: 8081
   servlet:
     context-path: /myHouse24DA
