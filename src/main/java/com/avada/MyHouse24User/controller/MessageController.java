@@ -13,5 +13,4 @@ public class MessageController {
     public String getAll(){
         return "view/message-get-all";
     }
-//    @GetMapping("")
 }

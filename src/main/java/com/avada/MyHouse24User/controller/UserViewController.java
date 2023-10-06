@@ -46,4 +46,15 @@ public class UserViewController {
         }
         userService.save(user);
     }
+    @GetMapping("/get/auth/id")
+    @ResponseBody
+    public long getIduthUser(){
+        return userService.getAuthUser().getId();
+    }
+
+    @GetMapping("/get/theme")
+    @ResponseBody
+    public String getThemeAuthUser(){
+        return userService.getAuthUser().getTheme().name();
+    }
 }

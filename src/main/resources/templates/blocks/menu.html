@@ -150,20 +150,57 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            const logoImage = $('.logo-image');
+            const miniLogoImage = $('.mini-logo-image');
+
+            if ($('#sidebar').hasClass('sidebar-collapse')) {
+                logoImage.css('display', 'block');
+                miniLogoImage.css('display', 'none');
+            } else {
+                logoImage.css('display', 'none');
+                miniLogoImage.css('display', 'block');
+            }
+
+            $('[data-widget="pushmenu"]').click(function () {
+                if ($('body').hasClass('sidebar-collapse')) {
+                    logoImage.css('display', 'block');
+                    miniLogoImage.css('display', 'none');
+                } else {
+                    logoImage.css('display', 'none');
+                    miniLogoImage.css('display', 'block');
+                }
+            });
+
+
             const themeToggle = $("#themeToggle");
             const body = $("body");
             const nav = $("nav");
             const aside = $("aside");
             const asideForTheme = $("#aside-for-theme");
-            console.log(document.cookie)
             let darkModeEnabled = false;
-            toggleTheme()
+            var theme;
+
+            $.ajax({
+                type: "Get",
+                url: "[[${context_path}]]/user/get/theme",
+                success: function(res) {
+                    theme=res;
+                    toggleTheme()
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log("AJAX request failed");
+                    console.log("Status: " + textStatus);
+                    console.log("Error thrown: " + errorThrown);
+                    console.log("Response Text: " + jqXHR.responseText);
+                }
+            });
+
             function toggleTheme() {
                 darkModeEnabled = !darkModeEnabled;
-                const theme = getCookie("theme");
                 const tables = document.querySelectorAll("table");
                 const tableRows = document.querySelectorAll("table tr");
-                if (theme === "☁") {
+                if (theme === 'DARK') {
+                    themeSwitchButton.textContent = "☁";
                     body.addClass("dark-mode");
                     nav.removeClass("navbar-light").addClass("navbar-dark");
                     aside.removeClass("sidebar-light-primary").addClass("sidebar-dark-primary");
@@ -176,6 +213,7 @@
                     });
                     $(".text-for-breadcrumb").css("color", "#fff");
                 } else {
+                    themeSwitchButton.textContent = "☀";
                     body.removeClass("dark-mode");
                     nav.removeClass("navbar-dark").addClass("navbar-light");
                     aside.removeClass("sidebar-dark-primary").addClass("sidebar-light-primary");
@@ -190,53 +228,32 @@
                 }
             }
 
-            function setCookie(name, value) {
-                const date = new Date();
-                date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
-                const expires = '; expires=' + date.toUTCString();
-                document.cookie = name + '=' + (value || '') + expires + '; path=/';
-            }
 
-            const cookieDisplayElement = document.getElementById('cookieDisplay');
-            cookieDisplayElement.textContent = getCookie("theme")
-
-            function getCookie(name) {
-                const nameEQ = name + '=';
-                const ca = document.cookie.split(';');
-                for (let i = 0; i < ca.length; i++) {
-                    let c = ca[i];
-                    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-                    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-                }
-                return null;
-            }
             themeToggle.click(toggleTheme);
 
             const themeSwitchButton = document.getElementById("themeSwitchButton");
             themeSwitchButton.type='button';
-            var contextPath = '[[${context_path}]]'
 
             themeSwitchButton.addEventListener("click", function() {
-                if (getCookie("theme") === "☁") {
-                    setCookie("theme", "☀")
-                    themeSwitchButton.textContent = "☀";
+                if (theme === 'DARK') {
                     $.ajax({
-                        url: contextPath+'/user/change/theme/light',
+                        url: '[[${context_path}]]/user/change/theme/light',
                         method: 'GET',
                         success: function(response) {
+                            theme='LIGHT';
+                            toggleTheme()
                         },
                     });
                     toggleTheme()
                 } else {
-                    setCookie("theme", "☁")
-                    themeSwitchButton.textContent = "☁";
                     $.ajax({
-                        url: contextPath+'/user/change/theme/dark',
+                        url: '[[${context_path}]]/user/change/theme/dark',
                         method: 'GET',
                         success: function(response) {
+                            theme='DARK';
+                            toggleTheme()
                         },
                     });
-                    toggleTheme()
                 }
             });
         });
@@ -244,5 +261,6 @@
             var selectedLanguage = document.getElementById("languageSelect").value;
             window.location.search = "?lang=" + selectedLanguage;
         }
+
     </script>
 </div>
