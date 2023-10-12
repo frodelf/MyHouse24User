@@ -36,6 +36,11 @@ spring:
             required: true
           ssl:
             trust: smtp.gmail.com
+  rabbitmq:
+    host: myhouse24da
+    port: 15672
+    username: guest
+    password: guest
 server:
   servlet:
     context-path: /myHouse24DA

@@ -57,8 +57,19 @@
                 'text': text,
                 'fromId': getLastElementInCurrentURL()
             };
-            userStompClient.send("/myHouse24DA/app/application", {},
-                JSON.stringify(messageObject));
+            // userStompClient.send("/myHouse24DA/rabbit/message", {},
+            //     JSON.stringify(messageObject));
+            $.ajax({
+                type: "Get",
+                url: "[[${context_path}]]/rabbit/message?text=" + encodeURIComponent(text) + "&house=" + getLastElementInCurrentURL(),
+                success: function() {
+                },
+                error: function(error) {
+                    console.log("AJAX request failed");
+                    console.log("Status: " + textStatus);
+                    console.log("Error thrown: " + errorThrown);
+                    console.log("Response Text: " + jqXHR.responseText);                }
+            });
         }
 
         function show(message) {
